@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <div class="detail">
-            <h1>Books Library</h1>
+            <h1>My book library</h1>
+            <p>This is a project for The Odin Project in which I have to make a library using Object Constructors and LocalStorage.
+                You can also view the <a href="https://github.com/ZohaibAlamPervaiz/Project-Library" target="_blank">Github repository</a> of this project.</p>
             <div class="input">
                 <label for="book_Name">Book</label>
                 <input type="text" id="book_Name" required>
@@ -21,16 +31,16 @@
                     <option value="not read">not read</option>
                 </select>
                 <button onclick="addBookToLibrary()">ADD</button>
-                <button onclick="cleanLocal()">clean</button>
             </div>
         </div>
         <div class="bookGrid">
             <div class="upperTable">
-                <h3>book name</h3>
+                <h3>Book</h3>
                 <h3>Author</h3>
                 <h3>status</h3>
-                <div></div>
+                <div class="buttonspace"></div>
             </div>
+            <div class="bookSpace"></div>
         </div>
     </main>
 </body>

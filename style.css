@@ -3,26 +3,98 @@ body{
     align-items: center;
     justify-content: center;
     padding: 0% 10%;
+    font-family: 'Raleway', sans-serif;
 }
-
+p{
+    font-size: 15px;
+}
+.detail{
+    width: 50dvw;
+}
+.detail h1{
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 3rem;
+    font-weight: lighter;
+}
+input{
+    padding: 2px 0 2px 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    -webkit-appearance: none;
+}
+input:focus{
+    
+}
+.input > *{
+    margin-left: 10px;
+}
 .bookGrid > div{
     margin-top: 10px;
-    width: 40dvw;
+    width: 50dvw;
     padding: 0px 4px;
-    border-bottom: 2px solid black;
     display: flex;
 }
 .bookGrid > div > *{
     flex: 1;
+}
+.bookSpace{
+    display: flex;
+    flex-direction: column;
+}
+.bookSpace > div{
+    display: flex;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.259);
+    margin-top: 5px;
+    padding: 0px 5px;
+}
+.bookSpace > div > *{
+    flex: 1;
+    border-left: 2px solid rgba(0, 0, 0, 0.13);
+    padding-left: 5px;
+}
+.bookSpace > div::before{
+    content: '';
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, #dddadf2a, #8fcee789);
+    mix-blend-mode: difference;
+    position: absolute;
+    transition: width 700ms;
+    border-radius: 5px;
+    
+}
+.bookSpace > div:hover::before{
+    width: 100%;
+}
+.bookSpace > div > h4{
+    transition: 1s;
+}
+.bookSpace > div:hover h4{
+    letter-spacing: 0.8px;
 }
 .bookGrid div > button{
     border-radius: 20px;
     height: 40px;
     align-self: center;
     border: none;
-    background-color: rgb(233, 76, 76);
+    background-color: rgb(103, 192, 240);
     color: white;
+    z-index: 3;
+    
 }
 .bookGrid div > button:active{
-    background-color: rgb(242, 101, 101);
+    background-color: rgb(134, 202, 238);
+}
+.input > button{
+    border: none;
+    background-color: rgb(87, 180, 242);
+    padding: 3px 8px;
+    color: white;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.input > button:active{
+    background-color: rgb(124, 198, 247);
 }

@@ -1,54 +1,73 @@
-let myLibrary = localStorage.getItem('item') ? JSON.parse(localStorage.getItem('item')):[];
-const bookName = document.querySelector('#book_Name');
-const aurthorName = document.querySelector('#Author');
-const divGrid = document.querySelector('.bookGrid');
-const selection = document.querySelector('#status');
+let myLibrary = [];
+const DEFAULT_DATA = [
+    {
+      name: "Alice in Wonderland",
+      author: "Lewis Caroll",
+      state: "not read",
+    },]
 
-class Book {
-    constructor(name, author, state) {
+let bookName = document.querySelector('#book_Name');
+let authorName = document.querySelector('#Author');
+let stats = document.querySelector('#status');
+let divGrid = document.querySelector('.bookSpace');
+
+
+class Book{
+    constructor(name,author,state){
         this.name = name;
         this.author = author;
         this.state = state;
     }
 }
-myLibrary.forEach(makeDiv);
-function addBookToLibrary() {
-    let valueOfSelection = checkState();
-    let newBook = new Book(bookName.value,aurthorName.value,valueOfSelection);
-    myLibrary.push(newBook);
-    localStorage.setItem('item',JSON.stringify(myLibrary));
-    console.log(localStorage.getItem('item'));
-    makeDiv(myLibrary);
-    clear()
+function addBookToLibrary(){
+    if(bookName.value.length === 0 || authorName.value.length ===  0){
+        alert("Please complete the in put");
+        return;
+    }
+    let bookDetail = new Book(bookName.value, authorName.value,stats.value);
+    myLibrary.push(bookDetail);
+    updateLocalStorage();
+    render();
+    location.reload();
 }
+function checkLocalStorage(){
+    if(localStorage.getItem('library')){
+        myLibrary = JSON.parse(localStorage.getItem('library'));
+    }else{
+        myLibrary = DEFAULT_DATA;
+    }
+}
+function updateLocalStorage() {
+    localStorage.setItem("library", JSON.stringify(myLibrary));
+    //library = JSON.parse(localStorage.getItem("library"));
+  }
+function remove(index){
+    console.log(index)
+    myLibrary.splice(index,index+1);
+    updateLocalStorage();
+    location.reload();
+}
+function  render(){
+    checkLocalStorage();
+    console.log(myLibrary);
+    myLibrary.forEach((books, currentIndex)=>{
+        let bookSpace = document.createElement('h4');
+        bookSpace.innerText = books.name;
+        let authorSpace = document.createElement('h4');
+        authorSpace.innerText = books.author;
+        let statusSpace = document.createElement('h4');
+        statusSpace.innerText = books.state;
+        let button = document.createElement('button');
+        button.innerText = 'Remove';
+        button.setAttribute('onclick','remove('+currentIndex+')');
+        let div = document.createElement('div');
 
-function makeDiv(array){
-    let book = document.createElement('h4');
-    book.innerHTML = array[0].name;
-    let author = document.createElement('h4');
-    author.innerHTML = array[0].author;
-    let state = document.createElement('h4');
-    state.innerHTML = array[0].state;
-    let button = document.createElement('button');
-    button.innerHTML = 'Remove';
-    let div = document.createElement('div');
-    div.appendChild(book);
-    div.appendChild(author);
-    div.appendChild(state);
-    div.appendChild(button);
-    divGrid.appendChild(div);
-}
-function checkState(){
-    let stat = selection.options[selection.selectedIndex].value;
-    return stat;
-}
-function clear(){
-    bookName.value = ' ';
-    aurthorName.value = ' ';
-}
-function cleanLocal(){
-    localStorage.clear();
-    console.log(localStorage.item);
-    myLibrary.length = 0;
-}
+        div.appendChild(bookSpace);
+        div.appendChild(authorSpace);
+        div.appendChild(statusSpace);
+        div.appendChild(button);
 
+        divGrid.appendChild(div);
+    })
+}
+render()
